@@ -1,0 +1,46 @@
+version: '3.9'
+services:
+  mongodb:
+    image: mongo
+    restart: always
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: bolinho
+      MONGO_INITDB_LOG_LEVEL: warning
+    volumes:
+      - mongodb-data:/data/db
+    command: mongod --quiet --logpath /dev/null
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - 3000:3000
+    environment:
+      NODE_ENV: production
+      MONGO_USERNAME: root
+      MONGO_PASSWORD: bolinho
+      MONGO_HOST: mongodb
+    depends_on:
+      - mongodb
+    volumes:
+      - ./src:/usr/src/app/src
+      - ./app.js:/usr/src/app/app.js
+  test:
+    build:
+      context: .
+      dockerfile: Dockerfile.test
+    environment:
+      NODE_ENV: test
+      MONGO_USERNAME: root
+      MONGO_PASSWORD: bolinho
+      MONGO_HOST: mongodb
+    depends_on:
+      - mongodb
+      - app
+volumes:
+  mongodb-data:
