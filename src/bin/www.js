@@ -4,10 +4,10 @@
  * Module dependencies.
  */
 
-var app = require('../app');
+var app = require('../../app');
 var debug = require('debug')('star-data-back:server');
 var http = require('http');
-const mongoConnection = require('../src/config/mongodb')
+const mongoConnection = require('../config/mongodb')
 
 /**
  * Get port from environment and store in Express.
@@ -26,13 +26,11 @@ var server = http.createServer(app);
  * Listen on provided port, on all network interfaces.
  */
 
-mongoConnection.connect().then(() => {
+mongoConnection().then(() => {
   server.listen(3000, () => {
     console.log('Server started on port 3000');
-  });
-}).catch((err) => {
-  console.log('Failed to connect to MongoDB:', err);
-});
+  })
+})
 
 server.on('error', onError);
 server.on('listening', onListening);

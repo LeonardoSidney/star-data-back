@@ -3,18 +3,22 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www",
-    "test": "echo teste",
+    "start": "node ./src/bin/www.js",
+    "test": "mocha --recursive",
+    "test:unit": "mocha --grep @unit --recursive",
     "watch": "nodemon start"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "~4.16.1",
+    "luxon": "^3.3.0",
     "mongoose": "^7.0.0",
-    "morgan": "~1.9.1"
+    "morgan": "~1.9.1",
+    "sinon": "^15.0.1"
   },
   "devDependencies": {
+    "chai": "^4.3.7",
     "mocha": "^10.2.0",
     "supertest": "^6.3.3"
   }
