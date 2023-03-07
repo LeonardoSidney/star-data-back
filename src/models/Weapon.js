@@ -11,4 +11,4 @@ const weaponSchema = new mongoose.Schema({
 
 const Weapon = mongoose.model('Weapon', weaponSchema);
 
-module.exports = Weapon;
+module.exports = { Weapon, weaponSchema};
