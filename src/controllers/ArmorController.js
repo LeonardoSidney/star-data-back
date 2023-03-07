@@ -1,4 +1,4 @@
-const Armor = require('../models/Armor');
+const { Armor } = require('../models/Armor');
 
 const routes = {};
 

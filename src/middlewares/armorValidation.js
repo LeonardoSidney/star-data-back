@@ -17,4 +17,4 @@ const validateArmor = (req, res, next) => {
   next();
 };
 
-module.exports = { validateArmor };
+module.exports = { validateArmor, armorSchema };

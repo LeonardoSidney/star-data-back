@@ -22,9 +22,11 @@ const armorSchema = new mongoose.Schema({
       enum: ['Humanos', 'Wookiees', 'Twileks', 'Kel Dor', 'Mirialan', 'Mandalorianos', 'Jedis']
     }],
     required: true
-  }
+  },
+  created_at: { type: Date, default: Date.now },
+  updated_at: { type: Date, default: Date.now }
 })
 
 const Armor = mongoose.model('Armor', armorSchema)
 
-module.exports = Armor
+module.exports = { Armor, armorSchema }
